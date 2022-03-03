@@ -8,7 +8,6 @@ public class SmEvaluationMsServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmEvaluationMsServerApplication.class, args);
-		System.out.println("Test");
 	}
 
 }
