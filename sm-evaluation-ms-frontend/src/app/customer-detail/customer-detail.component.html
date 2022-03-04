@@ -1,2 +1,10 @@
-<p>{{customer ? customer.name : 'aaaa'}}</p>
-<p>{{customer ? customer.email : 'aaa'}}</p>
+<div>
+  <input type="text" [(ngModel)]="name" id="customer-name">
+  <button type="button" (click)="getCustomer(name)">
+    Search
+  </button>
+</div>
+<div>
+  <p>{{customer ? customer.name : 'aaaa'}}</p>
+  <p>{{customer ? customer.email : 'aaa'}}</p>
+</div>

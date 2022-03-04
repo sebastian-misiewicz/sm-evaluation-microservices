@@ -10,18 +10,17 @@ import { CustomerDetailService } from './customer-detail.service';
   styleUrls: ['./customer-detail.component.less']
 })
 export class CustomerDetailComponent implements OnInit {
-
   name = 'Tomek2';
   customer: Customer | undefined;
 
   constructor(private customerDetailService: CustomerDetailService) { }
 
   ngOnInit(): void {
-    this.getCustomer();
+    this.getCustomer(this.name);
   }
 
-  getCustomer(): void {
-    this.customerDetailService.getCustomer(this.name)
+  getCustomer(customerName : string): void {
+    this.customerDetailService.getCustomer(customerName)
       .subscribe(customer => (this.customer = customer));
   }
 
