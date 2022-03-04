@@ -1,5 +1,13 @@
 # sm-evaluation-microservices
 
+To run:
+
+    docker-compose up
+
+To stop
+
+    docker-compose down
+
 ## sm-evaluation-ms-frontend
 To run:
 
