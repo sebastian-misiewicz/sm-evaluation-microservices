@@ -15,7 +15,7 @@ To run:
 
 To prepare docker image:
 
-    docker build -t sm-evaluation-microservices/sm-evaluation-ms-frontend .
+    docker build --no-cache -t sm-evaluation-microservices/sm-evaluation-ms-frontend .
 
 To run a docker image
 
@@ -24,7 +24,7 @@ To run a docker image
 ## sm-evaluation-ms-server-query
 To prepare a docker image:
     
-    docker build -t sm-evaluation-microservices/sm-evaluation-ms-server-query .
+    docker build --no-cache -t sm-evaluation-microservices/sm-evaluation-ms-server-query .
 
 To run:
 
@@ -33,7 +33,7 @@ To run:
 ## sm-evaluation-ms-server-command
 To prepare a docker image:
 
-    docker build -t sm-evaluation-microservices/sm-evaluation-ms-server-command .
+    docker build --no-cache -t sm-evaluation-microservices/sm-evaluation-ms-server-command .
 
 To run:
 
