@@ -1,9 +1,14 @@
 version: '3'
 services:
-  sm-evaluation-ms-server:
+  sm-evaluation-ms-server-query:
     image: sm-evaluation-microservices/sm-evaluation-ms-server-query:latest
     ports:
       - "8080:8080"
+
+  sm-evaluation-ms-server-command:
+    image: sm-evaluation-microservices/sm-evaluation-ms-server-command:latest
+    ports:
+      - "8081:8080"
 
   sm-evaluation-ms-frontend:
     image: sm-evaluation-microservices/sm-evaluation-ms-frontend:latest

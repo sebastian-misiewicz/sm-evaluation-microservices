@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class SmEvaluationMsServerApplication {
+public class CommandServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SmEvaluationMsServerApplication.class, args);
+        SpringApplication.run(CommandServerApplication.class, args);
     }
 
     @Bean

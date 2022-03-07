@@ -29,3 +29,12 @@ To prepare a docker image:
 To run:
 
     docker run -p 8080:8080 -t sm-evaluation-microservices/sm-evaluation-ms-server-query
+
+## sm-evaluation-ms-server-command
+To prepare a docker image:
+
+    docker build -t sm-evaluation-microservices/sm-evaluation-ms-server-command .
+
+To run:
+
+    docker run -p 8080:8080 -t sm-evaluation-microservices/sm-evaluation-ms-server-command
