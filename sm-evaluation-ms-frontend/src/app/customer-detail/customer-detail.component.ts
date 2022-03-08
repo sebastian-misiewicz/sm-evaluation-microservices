@@ -7,7 +7,7 @@ import { CustomerDetailService } from './customer-detail.service';
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
   providers: [CustomerDetailService],
-  styleUrls: ['./customer-detail.component.less']
+  styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
   name = 'Tomek2';
