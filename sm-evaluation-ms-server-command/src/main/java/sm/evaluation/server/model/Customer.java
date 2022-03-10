@@ -10,7 +10,7 @@ public class Customer {
 
     public Customer(CreateCustomerCommand createCustomerCommand) {
         this.name = createCustomerCommand.getName();
-        this.email = createCustomerCommand.getMail();
+        this.email = createCustomerCommand.getEmail();
     }
 
     public String getName() {

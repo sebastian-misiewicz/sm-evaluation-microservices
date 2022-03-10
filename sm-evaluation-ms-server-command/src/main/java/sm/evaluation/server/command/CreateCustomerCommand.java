@@ -4,21 +4,21 @@ public class CreateCustomerCommand {
 
     private String name;
 
-    private String mail;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+    private String email;
 
     public String getName() {
         return name;
     }
 
-    public String getMail() {
-        return mail;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -1,0 +1,22 @@
+<div class="row gy-5">
+  <div class="col-md">
+    <h1>Add new Customer</h1>
+    <form [formGroup]="customerFormGroup" (ngSubmit)="onSubmit()">
+      <div class="form-outline mb-4">
+        <mdb-form-control>
+          <input mdbInput type="text" id="form1" class="form-control" formControlName="name"/>
+          <label mdbLabel class="form-label" for="form1" >Name</label>
+        </mdb-form-control>
+      </div>
+      <div class="form-outline mb-4">
+        <mdb-form-control>
+          <input mdbInput type="text" id="form2" class="form-control" formControlName="email"/>
+          <label mdbLabel class="form-label" for="form1" >E-Mail</label>
+        </mdb-form-control>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+  </div>
+</div>
+

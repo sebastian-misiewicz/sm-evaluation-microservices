@@ -1,28 +1,34 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
-import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
-import { CustomerListComponent } from './customer-list/customer-list.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {CustomerDetailComponent} from './customer-detail/customer-detail.component';
+import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
+import {MdbCollapseModule} from 'mdb-angular-ui-kit/collapse';
+import {CustomerListComponent} from './customer-list/customer-list.component';
+import {CustomerFormComponent} from './customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerDetailComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MdbCollapseModule
+    MdbCollapseModule,
+    MdbFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
