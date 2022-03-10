@@ -9,9 +9,11 @@
       </tr>
       </thead>
       <tbody>
-      <th scope="row">1</th>
-      <td>Jak Kowalski</td>
-      <td>jan.kowalski@email.com</td>
+      <tr *ngFor="let customer of customers">
+        <th scope="row"></th>
+        <td>{{customer.name}}</td>
+        <td>{{customer.email}}</td>
+      </tr>
       </tbody>
     </table>
   </div>

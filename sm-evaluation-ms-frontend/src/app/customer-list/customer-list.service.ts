@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {Customer} from '../model/customer';
 import {Observable} from 'rxjs';
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,17 +12,14 @@ const httpOptions = {
 };
 
 @Injectable()
-export class CustomerDetailService {
+export class CustomerListService {
   customerDetailUrl = environment.API_URL + 'customer';  // URL to web api
 
   constructor(
     private http: HttpClient) {
   }
 
-  getCustomer(name: string): Observable<Customer> {
-    name = name.trim();
-    const options = name ?
-      {params: new HttpParams().set('name', name)} : {};
-    return this.http.get<Customer>(this.customerDetailUrl, options);
+  getAllCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.customerDetailUrl);
   }
 }

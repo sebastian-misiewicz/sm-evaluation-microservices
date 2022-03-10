@@ -18,7 +18,7 @@ public class QueryServerApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/customer").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/api/v1/customer").allowedOrigins("http://localhost:4200");
             }
         };
     }
