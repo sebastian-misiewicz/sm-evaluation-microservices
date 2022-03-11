@@ -8,16 +8,16 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>#</th>
         <th>Name</th>
         <th>E-Mail</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let customer of customers">
-        <th scope="row"></th>
         <td>{{customer.name}}</td>
         <td>{{customer.email}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="delete(customer)">Delete</button></td>
       </tr>
       </tbody>
     </table>

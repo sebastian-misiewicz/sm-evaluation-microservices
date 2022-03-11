@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerListService} from "./customer-list.service";
+import {CustomerService} from "../customer.service";
 import {Customer} from "../model/customer";
 
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  providers: [CustomerListService],
+  providers: [CustomerService],
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
 
   customers: Customer[] = [];
 
-  constructor(private customerListService: CustomerListService) {
+  constructor(private customerService: CustomerService) {
   }
 
   ngOnInit(): void {
@@ -20,8 +20,12 @@ export class CustomerListComponent implements OnInit {
   }
 
   getAllCustomers(): void {
-    this.customerListService.getAllCustomers()
+    this.customerService.getAllCustomers()
       .subscribe(customers => (this.customers = customers));
+  }
+
+  delete(customer: Customer): void {
+    this.customerService.deleteCustomer(customer).subscribe(customer => this.getAllCustomers());
   }
 
 }

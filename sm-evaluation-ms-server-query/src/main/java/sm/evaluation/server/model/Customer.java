@@ -1,9 +1,12 @@
 package sm.evaluation.server.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Customer {
 
     private final String name;
 
+    @Id
     private final String email;
 
     public Customer(String name, String email) {
