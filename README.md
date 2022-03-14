@@ -1,5 +1,9 @@
 # sm-evaluation-microservices
 
+Architecture:
+
+![](architecture.png)
+
 To run:
 
     docker-compose up
