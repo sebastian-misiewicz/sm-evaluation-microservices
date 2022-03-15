@@ -42,3 +42,6 @@ To prepare a docker image:
 To run:
 
     docker run -p 8080:8080 -t sm-evaluation-microservices/sm-evaluation-ms-server-command
+
+# Useful articles 
+[https://devapo.io/blog/kafka-in-spring-boot-on-docker/](https://devapo.io/blog/kafka-in-spring-boot-on-docker/)

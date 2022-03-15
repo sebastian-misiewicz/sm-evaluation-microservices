@@ -2,13 +2,17 @@ package sm.evaluation.server.model;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import sm.evaluation.server.command.CreateCustomerCommand;
 
 public class Customer {
 
     @Id
+    @JsonProperty
     private String email;
 
+    @JsonProperty
     private String name;
 
     public Customer(CreateCustomerCommand createCustomerCommand) {

@@ -1,9 +1,10 @@
 package sm.evaluation.server.restservice;
 
-import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sm.evaluation.server.command.CreateCustomerCommand;
+import sm.evaluation.server.event.CustomerCreated;
 import sm.evaluation.server.model.Customer;
 import sm.evaluation.server.repository.CustomerRepository;
 
@@ -21,15 +23,22 @@ public class CustomerCreateController {
 
     private final CustomerRepository customerRepository;
 
+    private final KafkaTemplate kafkaTemplate;
+
     @Autowired
-    public CustomerCreateController(CustomerRepository customerRepository) {
+    public CustomerCreateController(CustomerRepository customerRepository, KafkaTemplate kafkaTemplate) {
         this.customerRepository = customerRepository;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody CreateCustomerCommand createCustomerCommand) {
 
-        customerRepository.insert(new Customer(createCustomerCommand));
+        // TODO How to set ID in microservices?
+        // TODO How to ensure, that two instances are not added?
+        CustomerCreated customerCreated = new CustomerCreated(UUID.randomUUID().toString(), createCustomerCommand.getName(), createCustomerCommand.getEmail());
+
+        kafkaTemplate.send("event-topic", customerCreated);
         return ResponseEntity.ok().build();
     }
 

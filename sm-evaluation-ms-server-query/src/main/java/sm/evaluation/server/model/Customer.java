@@ -2,12 +2,19 @@ package sm.evaluation.server.model;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Customer {
 
-    private final String name;
+    @JsonProperty
+    private String name;
 
     @Id
-    private final String email;
+    @JsonProperty
+    private String email;
+
+    public Customer() {
+    }
 
     public Customer(String name, String email) {
         this.name = name;
