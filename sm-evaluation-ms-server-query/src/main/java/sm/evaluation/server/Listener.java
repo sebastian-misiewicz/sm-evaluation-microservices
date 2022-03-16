@@ -1,6 +1,9 @@
 package sm.evaluation.server;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,6 +19,8 @@ import sm.evaluation.server.repository.CustomerRepository;
 @Component
 @KafkaListener(topics = Topics.EVENT_TOPIC)
 public class Listener {
+
+    private static final Logger logger = LoggerFactory.getLogger(Listener.class);
 
     @Autowired
     private final CustomerRepository customerRepository;
@@ -38,7 +43,7 @@ public class Listener {
     }
 
     private void logEvent(Object event) {
-        System.out.println(String.format("Topic [event-topic] Received message with new event %s [%s]", event.getClass().getName(), event));
+        logger.info(String.format("Topic [event-topic] Received message with new event %s [%s]", event.getClass().getName(), event));
     }
 
 }
