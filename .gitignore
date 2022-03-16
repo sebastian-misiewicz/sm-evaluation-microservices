@@ -25,3 +25,10 @@ hs_err_pid*
 #IntelliJ
 .idea
 .iml
+
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/

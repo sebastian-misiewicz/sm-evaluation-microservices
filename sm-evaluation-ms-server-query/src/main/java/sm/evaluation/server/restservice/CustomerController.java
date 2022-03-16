@@ -29,7 +29,6 @@ public class CustomerController {
         return ResponseEntity.ok(customerRepository.findAll());
     }
 
-
     @GetMapping("/{name}")
     public Customer get(@PathVariable(value = "name") String name) {
         return new Customer(name, "test@email.com");

@@ -2,13 +2,13 @@ package sm.evaluation.server.command;
 
 public class DeleteCustomerCommand {
 
-    private final String email;
+    private final String id;
 
-    public DeleteCustomerCommand(String email) {
-        this.email = email;
+    public DeleteCustomerCommand(String id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getId() {
+        return id;
     }
 }

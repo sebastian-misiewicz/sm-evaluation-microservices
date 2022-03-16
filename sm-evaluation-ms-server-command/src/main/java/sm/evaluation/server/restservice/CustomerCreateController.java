@@ -14,20 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sm.evaluation.server.command.CreateCustomerCommand;
 import sm.evaluation.server.event.CustomerCreated;
-import sm.evaluation.server.model.Customer;
-import sm.evaluation.server.repository.CustomerRepository;
+import sm.evaluation.server.event.CustomerDeleted;
+import sm.evaluation.server.event.Topics;
 
 @RestController
 @RequestMapping(value = "/api/v1/customer")
 public class CustomerCreateController {
 
-    private final CustomerRepository customerRepository;
-
     private final KafkaTemplate kafkaTemplate;
 
     @Autowired
-    public CustomerCreateController(CustomerRepository customerRepository, KafkaTemplate kafkaTemplate) {
-        this.customerRepository = customerRepository;
+    public CustomerCreateController(KafkaTemplate kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
@@ -38,13 +35,14 @@ public class CustomerCreateController {
         // TODO How to ensure, that two instances are not added?
         CustomerCreated customerCreated = new CustomerCreated(UUID.randomUUID().toString(), createCustomerCommand.getName(), createCustomerCommand.getEmail());
 
-        kafkaTemplate.send("event-topic", customerCreated);
+        kafkaTemplate.send(Topics.EVENT_TOPIC, customerCreated);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{email}")
-    public ResponseEntity<Void> delete(@PathVariable(value = "email") String email) {
-        customerRepository.findById(email).ifPresent(customer -> customerRepository.delete(customer));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable(value = "id") String id) {
+
+        kafkaTemplate.send(Topics.EVENT_TOPIC, new CustomerDeleted(id));
         return ResponseEntity.ok().build();
     }
 
