@@ -3,6 +3,8 @@ package sm.evaluation.server.restservice;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sm.evaluation.server.command.CreateCustomerCommand;
 import sm.evaluation.server.event.CustomerCreated;
+import sm.evaluation.server.event.CustomerDeleted;
 import sm.evaluation.server.model.Customer;
 import sm.evaluation.server.repository.CustomerRepository;
 
@@ -42,9 +45,11 @@ public class CustomerCreateController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{email}")
-    public ResponseEntity<Void> delete(@PathVariable(value = "email") String email) {
-        customerRepository.findById(email).ifPresent(customer -> customerRepository.delete(customer));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable(value = "id") String id) {
+        kafkaTemplate.send("event-topic", new CustomerDeleted(id));
+
+//        customerRepository.findById(id).ifPresent(customer -> customerRepository.delete(customer));
         return ResponseEntity.ok().build();
     }
 
