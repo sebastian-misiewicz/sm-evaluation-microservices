@@ -1,4 +1,5 @@
 rootProject.name = 'sm-evaluation-ms'
+include 'sm-evaluation-ms-auth'
 include 'sm-evaluation-ms-api-events'
 include 'sm-evaluation-ms-server-command'
 include 'sm-evaluation-ms-server-query'

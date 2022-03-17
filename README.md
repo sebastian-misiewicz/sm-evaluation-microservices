@@ -25,6 +25,16 @@ To run a docker image
 
     docker run -p 4200:80 -t sm-evaluation-microservices/sm-evaluation-ms-frontend
 
+## sm-evaluation-ms-auth
+To prepare a docker image:
+
+    docker build --no-cache -t sm-evaluation-microservices/sm-evaluation-ms-auth .
+
+To run:
+
+    docker run -p 8080:8080 -t sm-evaluation-microservices/sm-evaluation-ms-auth
+
+
 ## sm-evaluation-ms-server-query
 To prepare a docker image:
     
