@@ -13,20 +13,29 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import sm.evaluation.server.model.User;
-import sm.evaluation.server.repository.UserRepository;
-
 @Component
 public class MsUserDetailsService
         implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private HttpServletRequest request;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.getUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        return new MsUserPrincipal(user);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl
+                = "http://localhost:8082/api/v1/security";
+        ResponseEntity<User> response
+                = restTemplate.exchange(fooResourceUrl, HttpMethod.GET, new HttpEntity<>(createHeaders()), User.class);
+
+        return new MsUserPrincipal(response.getBody());
+    }
+
+    HttpHeaders createHeaders() {
+        return new HttpHeaders() {{
+            set("Authorization", request.getHeader("authorization"));
+        }};
     }
 }

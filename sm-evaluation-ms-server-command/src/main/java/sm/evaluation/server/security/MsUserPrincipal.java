@@ -7,8 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import sm.evaluation.server.model.User;
-
 public class MsUserPrincipal
         implements UserDetails {
 
@@ -51,9 +49,5 @@ public class MsUserPrincipal
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public User getUser() {
-        return user;
     }
 }
