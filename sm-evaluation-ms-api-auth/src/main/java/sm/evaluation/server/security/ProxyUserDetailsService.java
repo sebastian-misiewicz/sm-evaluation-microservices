@@ -1,5 +1,6 @@
 package sm.evaluation.server.security;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import sm.evaluation.server.security.model.User;
+
 @Component
-public class MsUserDetailsService
+public class ProxyUserDetailsService
         implements UserDetailsService {
 
     @Autowired
@@ -30,7 +33,7 @@ public class MsUserDetailsService
         ResponseEntity<User> response
                 = restTemplate.exchange(fooResourceUrl, HttpMethod.GET, new HttpEntity<>(createHeaders()), User.class);
 
-        return new MsUserPrincipal(response.getBody());
+        return new ProxyUserPrincipal(response.getBody());
     }
 
     HttpHeaders createHeaders() {
@@ -38,4 +41,5 @@ public class MsUserDetailsService
             set("Authorization", request.getHeader("authorization"));
         }};
     }
+
 }

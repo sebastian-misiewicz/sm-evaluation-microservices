@@ -1,6 +1,5 @@
 package sm.evaluation.server.restcontroller;
 
-import java.security.Principal;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import sm.evaluation.server.model.User;
 import sm.evaluation.server.security.MsUserPrincipal;
+import sm.evaluation.server.security.model.User;
 
 @RestController
 @RequestMapping(value = "/api/v1/security")

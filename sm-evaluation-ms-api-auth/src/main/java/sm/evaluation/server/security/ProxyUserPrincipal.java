@@ -7,12 +7,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class MsUserPrincipal
-        implements UserDetails {
+import sm.evaluation.server.security.model.User;
+
+public class ProxyUserPrincipal implements UserDetails {
 
     private final User user;
 
-    public MsUserPrincipal(User user) {
+    public ProxyUserPrincipal(User user) {
         this.user = user;
     }
 
