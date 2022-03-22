@@ -1,4 +1,4 @@
-package sm.evaluation.server.model;
+package sm.evaluation.server.security.model;
 
 import java.util.Set;
 
