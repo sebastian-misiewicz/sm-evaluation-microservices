@@ -55,3 +55,5 @@ To run:
 
 # Useful articles 
 [https://devapo.io/blog/kafka-in-spring-boot-on-docker/](https://devapo.io/blog/kafka-in-spring-boot-on-docker/)
+
+[https://jasonwatmore.com/post/2020/04/29/angular-9-basic-http-authentication-tutorial-example](https://jasonwatmore.com/post/2020/04/29/angular-9-basic-http-authentication-tutorial-example)
