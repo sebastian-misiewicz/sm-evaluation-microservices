@@ -72,6 +72,17 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Authorization",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
