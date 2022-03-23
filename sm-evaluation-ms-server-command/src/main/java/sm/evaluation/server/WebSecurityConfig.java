@@ -9,7 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import sm.evaluation.server.security.JWTAuthenticationEntryPoint;
+import sm.evaluation.server.security.ProxyJWTTokenRequestFilter;
 import sm.evaluation.server.security.ProxyUserDetailsService;
 
 @Configuration
@@ -19,19 +22,28 @@ public class WebSecurityConfig
 
     private final ProxyUserDetailsService userDetailsService;
 
-    public WebSecurityConfig(ProxyUserDetailsService userDetailsService) {
+    private final ProxyJWTTokenRequestFilter proxyJWTTokenRequestFilter;
+
+    private final JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    public WebSecurityConfig(ProxyUserDetailsService userDetailsService, ProxyJWTTokenRequestFilter proxyJWTTokenRequestFilter, JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
         this.userDetailsService = userDetailsService;
+        this.proxyJWTTokenRequestFilter = proxyJWTTokenRequestFilter;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and()
+        http
                 .authorizeRequests()
                 .antMatchers("/api/**").authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().csrf().disable();
+
+        http.addFilterBefore(proxyJWTTokenRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Bean
     @Override
     public UserDetailsService userDetailsService() {
 
