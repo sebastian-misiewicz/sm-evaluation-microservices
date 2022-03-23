@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -10,6 +10,7 @@ import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
 import {MdbCollapseModule} from 'mdb-angular-ui-kit/collapse';
 import {CustomerListComponent} from './customer-list/customer-list.component';
 import {CustomerFormComponent} from './customer-form/customer-form.component';
+import {ErrorInterceptor} from "./http-error.interceptor";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import {CustomerFormComponent} from './customer-form/customer-form.component';
     MdbFormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
