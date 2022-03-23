@@ -11,17 +11,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import sm.evaluation.server.security.model.User;
 
-@Component
 public class ProxyUserDetailsService
         implements UserDetailsService {
 
-    @Autowired
-    private HttpServletRequest request;
+    private final HttpServletRequest request;
+
+    public ProxyUserDetailsService(HttpServletRequest request) {
+        this.request = request;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

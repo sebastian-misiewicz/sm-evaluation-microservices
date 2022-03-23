@@ -17,6 +17,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.kafka:spring-kafka:2.8.3'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
 	implementation project(':sm-evaluation-ms-api-auth')
 	implementation project(':sm-evaluation-ms-api-events')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
