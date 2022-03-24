@@ -36,6 +36,8 @@ public class WebSecurityConfig
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/authenticate").permitAll()
                 .and()
+                .authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/api/v1/authenticate").permitAll()
+                .and()
                 .authorizeRequests().antMatchers("/api/**").authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint())
                 .and().sessionManagement()
