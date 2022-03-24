@@ -27,14 +27,16 @@ public class ProxyUserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-
-        RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl
-                = "http://localhost:8082/api/v1/security";
-        ResponseEntity<User> response
-                = restTemplate.exchange(fooResourceUrl, HttpMethod.GET, new HttpEntity<>(createHeaders()), User.class);
-
-        return new ProxyUserPrincipal(response.getBody());
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            String fooResourceUrl
+                    = "http://localhost:8082/api/v1/security";
+            ResponseEntity<User> response
+                    = restTemplate.exchange(fooResourceUrl, HttpMethod.GET, new HttpEntity<>(createHeaders()), User.class);
+            return new ProxyUserPrincipal(response.getBody());
+        } catch (Exception ex) {
+            throw new UsernameNotFoundException("Correct authorized user has not been found", ex);
+        }
     }
 
     HttpHeaders createHeaders() {

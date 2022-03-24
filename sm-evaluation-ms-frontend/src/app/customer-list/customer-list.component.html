@@ -5,7 +5,10 @@
 </div>
 <div class="row">
   <div class="col-md">
-    <table class="table table-striped">
+    <div class="alert alert-info" role="alert" *ngIf="customers.length == 0">
+      There are no customers.
+    </div>
+    <table class="table table-striped" *ngIf="customers.length > 0">
       <thead>
       <tr>
         <th>Name</th>

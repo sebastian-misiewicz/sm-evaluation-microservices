@@ -25,7 +25,7 @@ export class CustomerService {
   }
 
   deleteCustomer(customer: Customer): Observable<Customer> {
-    return this.http.delete<Customer>(this.customerCommandApi + '/' + customer.email, httpOptions);
+    return this.http.delete<Customer>(this.customerCommandApi + '/' + customer.id, httpOptions);
   }
 
   getAllCustomers(): Observable<Customer[]> {

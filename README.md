@@ -1,8 +1,15 @@
 # sm-evaluation-microservices
 
-Architecture:
+## Architecture
 
 ![](architecture.png)
+
+## Security
+![](architecture-sequence-security.png)
+
+# Running
+## Production mode
+All services are started in containers.
 
 To run:
 
@@ -11,6 +18,17 @@ To run:
 To stop
 
     docker-compose down
+
+## Development mode
+In this mode only MongoDB, Zookeeper and Kafka are started as containers.
+
+To run:
+
+    docker-compose -f docker-compose_development.yml up -d
+
+To stop
+
+    docker-compose -f docker-compose_development.yml down
 
 ## sm-evaluation-ms-frontend
 To run:

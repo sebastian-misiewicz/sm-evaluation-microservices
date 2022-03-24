@@ -1,20 +1,18 @@
 import {Injectable} from '@angular/core';
-import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest,
-  HttpErrorResponse,
-  HttpResponse
-} from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {environment} from '../environments/environment';
+import {LocalStorageService} from "./localstorage.service";
 
 @Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
+
+  constructor(private localStorageService: LocalStorageService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const isApiUrl = request.url.startsWith(environment.API_URL) || request.url.startsWith(environment.API_COMMAND_URL);
+    const jwtToken = this.localStorageService.get('jwtToken');
     if (isApiUrl) {
       request = request.clone({
 
@@ -23,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
           'Content-Type': 'application/json; charset=utf-8',
           'Accept': 'application/json',
-          'Authorization': 'Basic amFuLmtvd2Fsc2tpOnBhc3N3b3Jk'
+          'Authorization': 'Bearer ' + jwtToken
         },
       });
     }
