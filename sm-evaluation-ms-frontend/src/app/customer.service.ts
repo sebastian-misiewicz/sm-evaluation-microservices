@@ -13,22 +13,21 @@ const httpOptions = {
 
 @Injectable()
 export class CustomerService {
-  customerCommandApi = environment.API_COMMAND_URL + 'customer';
-  customerQueryApi = environment.API_URL + 'customer';
+  customerApi = environment.API_URL + 'customer';
 
   constructor(
     private http: HttpClient) {
   }
 
   addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.customerCommandApi, customer, httpOptions);
+    return this.http.post<Customer>(this.customerApi, customer, httpOptions);
   }
 
   deleteCustomer(customer: Customer): Observable<Customer> {
-    return this.http.delete<Customer>(this.customerCommandApi + '/' + customer.id, httpOptions);
+    return this.http.delete<Customer>(this.customerApi + '/' + customer.id, httpOptions);
   }
 
   getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.customerQueryApi);
+    return this.http.get<Customer[]>(this.customerApi);
   }
 }

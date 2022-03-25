@@ -11,9 +11,10 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const isApiUrl = request.url.startsWith(environment.API_URL) || request.url.startsWith(environment.API_COMMAND_URL);
+    const isApiUrl = request.url.startsWith(environment.API_URL);
+    const isAuthUrl = request.url.indexOf('authenticate') != -1;
     const jwtToken = this.localStorageService.get('jwtToken');
-    if (isApiUrl) {
+    if (isApiUrl && !isAuthUrl) {
       request = request.clone({
 
         setHeaders: {

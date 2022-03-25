@@ -1,5 +1,11 @@
 # sm-evaluation-microservices
 
+This is a project, that evaluates use of microservices architecture patterns. Following patterns have been utilized:
+* [CQRS](https://microservices.io/patterns/data/cqrs.html)
+* [Event Sourcing](https://microservices.io/patterns/data/event-sourcing.html)
+* [Database per Service](https://microservices.io/patterns/data/database-per-service.html)
+* [API Gateway](https://microservices.io/patterns/apigateway.html)
+
 ## Architecture
 
 ![](architecture.png)

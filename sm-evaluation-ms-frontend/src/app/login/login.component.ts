@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../localstorage.service";
-import {AuthorizationService} from "../authorization.service";
+import {AuthenticateService} from "../authenticate.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  providers: [AuthorizationService, LocalStorageService],
+  providers: [AuthenticateService, LocalStorageService],
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   hasLoginFailed: Boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private localStorageService: LocalStorageService, private authorizationService: AuthorizationService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private localStorageService: LocalStorageService, private authorizationService: AuthenticateService) {
   }
 
   ngOnInit(): void {

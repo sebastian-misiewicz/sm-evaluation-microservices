@@ -12,15 +12,15 @@ const httpOptions = {
 };
 
 @Injectable()
-export class AuthorizationService {
-  customerCommandApi = environment.API_AUTH_URL + 'authenticate';
+export class AuthenticateService {
+  authenticationApi = environment.API_URL + 'authenticate';
 
   constructor(
     private http: HttpClient) {
   }
 
   login(login: Login): Observable<JWTToken> {
-    return this.http.post<JWTToken>(this.customerCommandApi, login, httpOptions);
+    return this.http.post<JWTToken>(this.authenticationApi, login, httpOptions);
   }
 
 }
